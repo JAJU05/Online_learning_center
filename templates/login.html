@@ -1,0 +1,23 @@
+{% extends "lessons.html" %}
+{% load static %}
+
+
+{% block title %}
+    Login 
+{% endblock%}
+
+{% block content %}
+<br>
+
+{{error_msg}}
+
+<form action="" method="post">
+    {% csrf_token %}
+    {{form.as_p}}
+    <input type="submit" value="Login">
+</form>
+<br>
+
+if you do not have account, please <a href="{% url 'register' %}" class="btn btn-primary py-md-2 px-md-4 font-weight-semi-bold mt-2">Register</a>
+{% endblock %}
+

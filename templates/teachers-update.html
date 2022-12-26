@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% load static %}
+
+
+{% block title %}
+    Teachers_update
+{% endblock%}
+
+{% block content %}
+<br>
+<form action="" method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{form.as_p}}
+    <input type="submit" value="Save">
+</form>
+<br>
+<a href="{% url 'delete-teachers' form.instance.id %}">Delete</a>
+{% endblock %}

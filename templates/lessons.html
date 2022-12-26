@@ -1,0 +1,75 @@
+{% extends "base.html" %}
+{% load static %}
+
+
+{% block title %}
+    Lessons
+{% endblock%}
+
+{% block content %}
+
+    <!-- Header Start -->
+    <div class="container-fluid page-header" style="margin-bottom: 90px;">
+        <div class="container">
+            <div class="d-flex flex-column justify-content-center" style="min-height: 300px">
+                <h3 class="display-4 text-white text-uppercase">Courses</h3>
+                <div class="d-inline-flex text-white">
+                    <p class="m-0 text-uppercase"><a class="text-white" href="{% url 'index' %}">Home</a></p>
+                    <i class="fa fa-angle-double-right pt-1 px-3"></i>
+                    <p class="m-0 text-uppercase">Courses</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Header End -->
+
+<!-- Courses Start -->
+<div class="text-center mb-5">
+    <h5 class="text-primary text-uppercase mb-3" style="letter-spacing: 5px;">Darslar</h5>
+    <br>
+    <form action="" method="get">
+        Darslarni qidirish : <input type="text" name="name__icontains"> 
+        <input type="submit" value="Search">
+    </form>
+    <br>
+    <h1>Bizning darslarimiz</h1>
+    <br>
+    <div class="row">  
+        {% for item in lesson %}
+            <div class="col-lg-4 col-md-6 mb-4">
+                <div class="rounded overflow-hidden mb-2">
+                    <div>
+                        <img class="img-fluid" src="{{item.lesson_image.url}}"  width="600" height="300">
+                    </div>
+                    <div class="bg-secondary p-4">
+                        <div class="d-flex justify-content-between mb-3">
+                            <small class="m-0"><i class="fa fa-users text-primary mr-2"></i>25 Talabalar</small>
+                            <small class="m-0"><i class="far fa-clock text-primary mr-2"></i>{{item.duration}}oy<br>{{item.time_duration}} soat</small>
+                        </div>
+                        <a class="h5" href="{% url 'update-lesson' item.id %}">{{item}}</a>
+                        <br>
+                        <a class="h5" href="">{{item.durations}}</a>
+                        <div class="border-top mtpt-4">
+                            <div class="d-flex justify-content-between">
+                                <h6 cla-4 ss="m-0"><i class="fa fa-star text-primary mr-2"></i>4.5 <small>(250)</small></h6>
+                                <h5 class="m-0" href="">{{item.price}} $</h5>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+ </div>
+
+
+<a href="{% url 'add-lesson' %}">Add lesson</a>
+    <br>
+    <br>
+    {% for item in lessons %}
+    <div>
+        <a href=lesson/view/{{item.id}}>{{item}}</a> <br>
+    </div>
+    {% endfor %}
+
+{% endblock %}
